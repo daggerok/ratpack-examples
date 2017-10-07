@@ -7,7 +7,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import ratpack.func.Action;
-import ratpack.handling.ByContentSpec;
 import ratpack.handling.Chain;
 import ratpack.handling.Context;
 import ratpack.http.MutableHeaders;
@@ -48,44 +47,71 @@ public class PizzaServiceApplication {
         http :5050
 
         {
-            "uris": [
-                "http://localhost:5050/orders"
+            "actions": [
+                {
+                    "GET": "http://localhost:5050"
+                },
+                {
+                    "GET": "http://localhost:5050/get-planet-summary"
+                },
+                {
+                    "GET": "http://localhost:5050/count-standing-orders"
+                },
+                {
+                    "POST": "http://localhost:5050/place-order"
+                },
+                {
+                    "POST": "http://localhost:5050/take-orders"
+                }
             ]
         }
         */
 
         .get("", ctx ->
-            render(ctx, singletonMap("uris", asList(
+            render(ctx, singletonMap("actions", asList(
                 singletonMap("GET", "http://localhost:5050"),
-                singletonMap("GET", "http://localhost:5050/get-orders"),
-                singletonMap("POST", "http://localhost:5050/save-order")
+                singletonMap("GET", "http://localhost:5050/get-planet-summary"),
+                singletonMap("GET", "http://localhost:5050/count-standing-orders"),
+                singletonMap("POST", "http://localhost:5050/place-order"),
+                singletonMap("POST", "http://localhost:5050/take-orders")
             )))
         )
 
 
         /*
-        http get http://localhost:5050/get-orders variant=HAWAII size=BIG planet=Earth
+        http get http://localhost:5050/get-planet-summary
 
         [
             {
-                "counter": 4,
+                "counter": 2,
                 "name": "Earth"
             }
         ]
          */
 
-        .get("get-orders", ctx ->
+        .get("get-planet-summary", ctx ->
             render(ctx, pizzaService.getPlanetSummary())
         )
 
 
         /*
-        http post http://localhost:5050/save-order variant=HAWAII size=BIG planet=Earth
+        http get http://localhost:5050/count-standing-orders
+
+        2
+        */
+
+        .get("count-standing-orders", ctx ->
+            render(ctx, pizzaService.countStandingOrders())
+        )
+
+
+        /*
+        http post http://localhost:5050/place-order variant=HAWAII size=BIG planet=Earth
 
         "OK"
-         */
+        */
 
-        .post("save-order", ctx -> {
+        .post("place-order", ctx -> {
           //ctx.parse(Order.class)
           ctx.parse(fromJson(Order.class))
              .onError(throwable -> log.error("oops: {}", throwable.getLocalizedMessage(), throwable))
@@ -95,6 +121,28 @@ public class PizzaServiceApplication {
                render(ctx, "OK");
              });
         })
+
+
+        /*
+        http post http://localhost:5050/take-orders
+
+        [
+            {
+                "planet": "Earth",
+                "size": "BIG",
+                "variant": "HAWAII"
+            },
+            {
+                "planet": "Earth",
+                "size": "BIG",
+                "variant": "HAWAII"
+            }
+        ]
+        */
+
+        .post("take-orders", ctx ->
+            render(ctx, pizzaService.takeOrdersFromBestPlanet())
+        )
         ;
   }
 

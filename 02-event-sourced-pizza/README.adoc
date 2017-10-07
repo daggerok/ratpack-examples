@@ -1,10 +1,20 @@
-= pizza
+= event-sourced pizza image:https://travis-ci.org/daggerok/ratpack-examples.svg?branch=master["Build Status", link="https://travis-ci.org/daggerok/ratpack-examples"]
 
 This repos is in progress and contains some event-sourcing playground project
 
 //tag::content[]
 
 _TODO: in progress..._
+
+----
+bash gradlew bootRun
+
+http :5050
+http post :5050/place-order variant=HAWAII size=BIG planet=Earth
+http :5050/count-standing-orders
+http :5050/get-planet-summary
+http post :5050/take-orders
+----
 
 links:
 

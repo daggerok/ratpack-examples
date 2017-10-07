@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="spring boot ratpack app">
+  <meta name="keywords" content="spring,ratpack,web-mvc,spring-boot,spring-mvc,spring-web,web-interceptor,spring-data-rest,mongodb,mustache,webjars-locator,bootstrap,java,gradle,html,css">
+  <meta name="author" content="Maksim Kostromin">
+  <title>spring-ratpack</title>
+  <link rel="stylesheet" href="{{ctx}}/webjars/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{ctx}}/app.css">
+</head>
+<body class="container">
+<h3 id="app" class="panel panel-body">hey!</h3>
+<ul class="panel-body list-style-none">
+  {{#items}}
+    <li id="{{id}}">{{content}}</li>{{/items}}
+</ul>
+<button id="refresh">refresh</button>
+<script src="{{ctx}}/webjars/jquery/jquery.min.js"></script>
+<script src="{{ctx}}/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+group: edge
+dist: trusty
+
+language: java
+jdk:
+  - openjdk8
+  - oraclejdk8
+
+install: true
+before_install:
+
+  - sudo apt update
+  - sudo apt install -y python-pip curl jq libxml2-utils
+  - sudo pip install httpie
+
+script:
+
+  - bash gradlew clean build
+
+  - export ROOT=$PWD
+  - >
+    for path in \
+      01-spring-boot-ratpack \
+      02-event-sourced-pizza \
+    ; do
+
+      cd "$ROOT/$path"
+      bash gradlew clean build
+
+    done;
+
+cache:
+  directories:
+    - /usr/local/lib/
+    - $HOME/.gradle/
+    - $HOME/.cache/
+    - $HOME/.nvm/
+    - $HOME/.m2/
+    - 01-spring-boot-ratpack/.gradle/

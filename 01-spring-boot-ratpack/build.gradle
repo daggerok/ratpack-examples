@@ -1,0 +1,38 @@
+plugins {
+  id "java"
+  id "idea"
+  id "org.springframework.boot" version "1.5.7.RELEASE"
+}
+
+jar {
+  baseName = "retpack-spring-boot"
+  version = "0.0.1"
+}
+
+sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
+
+repositories {
+  mavenCentral()
+  maven { url "https://repo.spring.io/snapshot" }
+  maven { url "https://repo.spring.io/milestone" }
+}
+
+dependencies {
+  compileOnly("org.projectlombok:lombok")
+  compile("org.springframework.boot:spring-boot-starter-actuator")
+  compile("org.springframework.boot:spring-boot-starter-mustache")
+  compile("org.springframework.boot:spring-boot-starter-data-mongodb")
+  compile("org.springframework.boot:spring-boot-starter-data-rest")
+  compile("de.flapdoodle.embed:de.flapdoodle.embed.mongo")
+  compile("org.springframework.boot:spring-boot-devtools")
+  compile("io.ratpack:ratpack-spring-boot:1.2.0")
+  compile("org.webjars:webjars-locator:0.32")
+  compile("org.webjars:bootstrap:3.3.7")
+  compile("org.webjars:jquery:3.1.0")
+  testCompile("org.springframework.boot:spring-boot-starter-test")
+}
+
+wrapper {
+  gradleVersion = "4.2.1"
+  distributionType = "ALL"
+}

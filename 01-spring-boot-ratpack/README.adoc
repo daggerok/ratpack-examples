@@ -1,0 +1,10 @@
+= ratpack-examples image:https://travis-ci.org/daggerok/ratpack-examples.svg?branch=master["Build Status", link=https://travis-ci.org/daggerok/ratpack-examples]
+
+//tag::content[]
+
+.build and deploy docks
+----
+bash gradlew build bootRun
+----
+
+//end::content[]

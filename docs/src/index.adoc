@@ -1,0 +1,29 @@
+= ratpack-examples {project-name} ({project-version}) image:https://travis-ci.org/daggerok/ratpack-examples.svg?branch=master["Build Status", link={github_url}]
+Maksim Kostromin <daggerok@gmail.com>
+{docdatetime}
+:toc:
+:revnumber: {project-version}
+:example-caption!:
+:icons: font
+:toc: left
+:numbered:
+:github_url: https://github.com/daggerok/ratpack-examples
+:github_project_path: {github_url}/tree/master
+
+[discrete]
+== Introduction
+
+This documentation contains some help to
+link:{github_url}[examples from ratpack-examples repository]
+
+== using spring-boot with ratpack
+include::../../01-spring-boot-ratpack/README.adoc[tags=content]
+
+== event-sourcing using ratpack and spring-boot
+include::../../02-event-sourced-pizza/README.adoc[tags=content]
+
+== links
+
+. link:http://asciidoctor.org/docs/user-manual/#builtin-attributes[asciidoctor attributes]
+
+== Enjoy! :)

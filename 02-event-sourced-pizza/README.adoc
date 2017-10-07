@@ -1,0 +1,14 @@
+= pizza
+
+This repos is in progress and contains some event-sourcing playground project
+
+//tag::content[]
+
+_TODO: in progress..._
+
+links:
+
+. link:https://www.youtube.com/watch?v=n_NXUk6POgY[event sourcing talk]
+. link:https://ratpack.io/manual/current/jackson.html[ratpack]
+
+//end::content[]

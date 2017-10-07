@@ -1,0 +1,42 @@
+buildscript {
+  ext {
+    springBootVersion = "1.5.7.RELEASE"
+  }
+  repositories { mavenCentral() }
+  dependencies { classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion") }
+}
+
+plugins {
+  id "idea"
+}
+
+allprojects { ap ->
+
+  apply plugin: "java"
+
+  group "daggerok"
+  version "0.0.1"
+  sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
+
+  repositories { mavenCentral() }
+
+  wrapper {
+    gradleVersion = "4.2.1"
+    distributionType = "ALL"
+  }
+}
+
+subprojects { sp ->
+
+  apply plugin: "org.springframework.boot"
+
+  dependencies {
+    compileOnly("org.projectlombok:lombok")
+    compile("org.springframework.boot:spring-boot-starter")
+    //testCompile("org.springframework.boot:spring-boot-starter-test")
+  }
+
+  springBoot {
+    executable = true
+  }
+}

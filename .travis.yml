@@ -20,8 +20,8 @@ script:
   - export ROOT=$PWD
   - >
     for path in \
-      01-spring-boot-ratpack \
-      02-event-sourced-pizza \
+      spring-boot-ratpack \
+      event-sourced-pizza \
     ; do
 
       cd "$ROOT/$path"

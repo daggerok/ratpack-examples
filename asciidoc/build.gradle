@@ -42,6 +42,11 @@ gitPublish {
   }
 }
 
+//task ghPagesMaster(type: Copy) {
+//
+//  mustRunAfter build
+//}
+
 build.dependsOn asciidoctor
 gitPublishPush.dependsOn build
 gitPublishPush.shouldRunAfter clean, build

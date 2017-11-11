@@ -2,5 +2,5 @@
 
 This repository contains some node.js examples
 
-. link:01-spring-boot-ratpack[ratpack: spring-boot]
-. link:02-event-sourced-pizza[pizza: event-sourcing]
+. link:spring-boot-ratpack[ratpack: spring-boot]
+. link:event-sourced-pizza[pizza: event-sourcing]

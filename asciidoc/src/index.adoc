@@ -17,10 +17,10 @@ This documentation contains some help to
 link:{github_url}[examples from ratpack-examples repository]
 
 == using spring-boot with ratpack
-include::../../01-spring-boot-ratpack/README.adoc[tags=content]
+include::../../spring-boot-ratpack/README.adoc[tags=content]
 
 == event-sourcing using ratpack and spring-boot
-include::../../02-event-sourced-pizza/README.adoc[tags=content]
+include::../../event-sourced-pizza/README.adoc[tags=content]
 
 == links
 

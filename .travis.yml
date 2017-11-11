@@ -21,8 +21,8 @@ script:
   - >
     for path in \
       spring-boot-ratpack \
-      event-sourced-pizza \
-    ; do
+      event-sourced-pizza
+    do
 
       cd "$ROOT/$path"
       bash gradlew clean build

@@ -6,7 +6,7 @@ buildscript {
 
 plugins {
   id "base"
-  id "org.asciidoctor.convert" version "1.5.3"
+  id "org.asciidoctor.convert" version "1.5.6"
 }
 
 group "daggerok"

@@ -1,0 +1,36 @@
+buildscript {
+  ext { springBootVersion = "1.3.5.RELEASE" }
+  repositories {
+    jcenter()
+  }
+  dependencies {
+    classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
+    classpath "io.ratpack:ratpack-gradle:1.3.3"
+  }
+}
+
+apply plugin: "idea"
+apply plugin: "java"
+apply plugin: "spring-boot"
+apply plugin: "io.ratpack.ratpack-groovy"
+apply plugin: "io.ratpack.ratpack-java"
+
+sourceCompatibility = targetCompatibility = 1.8
+
+repositories { jcenter() }
+
+dependencies {
+  compile("org.webjars:bootstrap:3.3.6")
+  compile("org.springframework.boot:spring-boot-starter-groovy-templates")
+  compile("org.springframework.boot:spring-boot-starter-data-mongodb")
+  compile("org.springframework.data:spring-data-rest-webmvc")
+  compile("de.flapdoodle.embed:de.flapdoodle.embed.mongo")
+  compile("org.springframework.boot:spring-boot-devtools")
+  compile("org.projectlombok:lombok:1.16.6")
+  compile("io.ratpack:ratpack-spring-boot:1.1.1")
+  testCompile("org.springframework.boot:spring-boot-starter-test")
+}
+
+task wrapper(type: Wrapper) {
+  gradleVersion = "2.6"
+}

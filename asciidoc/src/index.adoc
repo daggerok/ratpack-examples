@@ -25,6 +25,9 @@ include::../../event-sourced-pizza/README.adoc[tags=content]
 == Full Stack Ratpack: groovy API | IoC | serving static content | REST with Jackson | SPA
 include::../../groovy-ioc-static-rest-spa-fullstack/README.adoc[tags=content]
 
+== Running spring-boot (old versions) together with ratpack using groovy template engine abd gradle 2.6
+include::../../run-spring-boot-and-ratpack-together-groovy-template-engine/README.adoc[tags=content]
+
 == links
 
 . link:http://asciidoctor.org/docs/user-manual/#builtin-attributes[asciidoctor attributes]

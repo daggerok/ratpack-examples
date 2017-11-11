@@ -1,7 +1,6 @@
 buildscript {
   ext {
-//    ratpackVersion = "1.5.0"
-    ratpackVersion = "1.1.1"
+    ratpackVersion = "1.5.0"
   }
   repositories {
     jcenter()
@@ -21,12 +20,14 @@ apply plugin: "io.ratpack.ratpack-java"
 // requires for groovyMarkupTemplate
 apply plugin: "io.ratpack.ratpack-groovy"
 
+mainClassName = "daggerok.SpringBootRatpackApplication"
+
 sourceCompatibility = targetCompatibility = 1.8
 
 repositories { jcenter() }
 
 dependencies {
-  compile("io.ratpack:ratpack-spring-boot:1.1.1")
+  compile("io.ratpack:ratpack-spring-boot:$ratpackVersion")
   compile("org.webjars:bootstrap:3.3.6")
   compile("org.springframework.boot:spring-boot-starter-groovy-templates")
   compile("org.springframework.boot:spring-boot-starter-data-mongodb")

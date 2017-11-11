@@ -1,0 +1,6 @@
+spring:
+  data.rest.base-path: /api
+  groovy.template:
+    cache: false
+    suffix: .tpl
+  output.ansi.enabled: always

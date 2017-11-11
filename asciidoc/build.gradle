@@ -29,8 +29,6 @@ asciidoctor {
       "endpoint-url": "https://daggerok.github.io/ratpack-examples"
 }
 
-asciidoctor.shouldRunAfter clean
-
 // read more: https://github.com/ajoberstar/gradle-git-publish
 gitPublish {
   repoUri = "git@github.com:daggerok/ratpack-examples.git"
@@ -42,12 +40,19 @@ gitPublish {
   }
 }
 
-//task ghPagesMaster(type: Copy) {
-//
-//  mustRunAfter build
-//}
+task docs {
+  doLast {
+    file("$buildDir/gitPublish")
+      .renameTo(file("$projectDir.parent/docs"))
+  }
+  dependsOn asciidoctor, ":asciidoc:gitPublishCopy"
+  shouldRunAfter clean, asciidoctor, ":asciidoc:gitPublishCopy", build
+}
 
-build.dependsOn asciidoctor
-gitPublishPush.dependsOn build
-gitPublishPush.shouldRunAfter clean, build
-task deploy(dependsOn: [gitPublishPush])
+clean.doFirst {
+  delete "$projectDir.parent/docs"
+}
+
+asciidoctor.shouldRunAfter clean
+build.dependsOn asciidoctor, gitPublishCopy
+gitPublishCopy.shouldRunAfter clean, asciidoctor

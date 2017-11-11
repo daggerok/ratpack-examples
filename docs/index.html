@@ -538,7 +538,7 @@ table.CodeRay td.code>pre{padding:0}
 <span id="author" class="author">Maksim Kostromin</span><br>
 <span id="email" class="email"><a href="mailto:daggerok@gmail.com">daggerok@gmail.com</a></span><br>
 <span id="revnumber">version 0.0.1,</span>
-<span id="revdate">2017-11-11 21:47:03 EET</span>
+<span id="revdate">2017-11-11 22:21:44 EET</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -608,31 +608,46 @@ http post :5050/take-orders</pre>
 <h2 id="full-stack-ratpack-groovy-api-ioc-serving-static-content-rest-with-jackson-spa">3. Full Stack Ratpack: groovy API | IoC | serving static content | REST with Jackson | SPA</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><em>TODO: in progress&#8230;&#8203;</em></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>bash gradlew bootRun
-
-http :5050
-http post :5050/place-order variant=HAWAII size=BIG planet=Earth
-http :5050/count-standing-orders
-http :5050/get-planet-summary
-http post :5050/take-orders</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>links:</p>
+<p>This repository contains full-stack app using:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><a href="https://www.youtube.com/watch?v=n_NXUk6POgY">event sourcing talk</a></p>
+<p>ratpack groovy API</p>
 </li>
 <li>
-<p><a href="https://ratpack.io/manual/current/jackson.html">ratpack</a></p>
+<p>IoC (DI) from java classes</p>
+</li>
+<li>
+<p>render view using groovy template engine</p>
+</li>
+<li>
+<p>REST API (using Jackson for JSON content type)</p>
+</li>
+<li>
+<p>service static content</p>
 </li>
 </ol>
+</div>
+<div class="listingblock">
+<div class="title">build, run and test</div>
+<div class="content">
+<pre>bash gradlew clean build
+java -jar build/libs/*-all.jar
+
+http :5050
+http :5050/api
+http :5050/api/bla-bla</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">developemnt</div>
+<div class="content">
+<pre>bash gradlew run</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>//// original readme: ////</p>
 </div>
 </div>
 </div>
@@ -658,7 +673,7 @@ http post :5050/take-orders</pre>
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1<br>
-Last updated 2017-11-11 21:47:03 EET
+Last updated 2017-11-11 22:21:44 EET
 </div>
 </div>
 </body>

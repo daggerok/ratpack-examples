@@ -23,7 +23,7 @@ include::../../spring-boot-ratpack/README.adoc[tags=content]
 include::../../event-sourced-pizza/README.adoc[tags=content]
 
 == Full Stack Ratpack: groovy API | IoC | serving static content | REST with Jackson | SPA
-include::../../event-sourced-pizza/README.adoc[tags=content]
+include::../../groovy-ioc-static-rest-spa-fullstack/README.adoc[tags=content]
 
 == links
 

@@ -15,7 +15,7 @@ before_install:
 
 script:
 
-  - bash gradlew clean build
+  - bash gradlew clean docs
 
   - export ROOT=$PWD
   - >

@@ -1,7 +1,12 @@
+buildscript {
+  ext {
+    ghPagesFolder = "$projectDir.parent/docs"
+  }
+}
+
 plugins {
   id "base"
   id "org.asciidoctor.convert" version "1.5.3"
-  id "org.ajoberstar.git-publish" version "0.3.0"
 }
 
 group "daggerok"
@@ -29,33 +34,20 @@ asciidoctor {
       "endpoint-url": "https://daggerok.github.io/ratpack-examples"
 }
 
-// read more: https://github.com/ajoberstar/gradle-git-publish
-gitPublish {
-  repoUri = "git@github.com:daggerok/ratpack-examples.git"
-  branch = "gh-pages"
-  contents {
-    from "$buildDir/asciidoc/html5"
-    from "$projectDir/src/static"
-    into "."
-  }
-}
-
-task docs {
-  doLast {
-    file("$buildDir/gitPublish")
-      .renameTo(file("$projectDir.parent/docs"))
-  }
-  dependsOn asciidoctor, ":asciidoc:gitPublishCopy"
-  shouldRunAfter clean, asciidoctor, ":asciidoc:gitPublishCopy", build
+task docs(type: Copy) {
+  from "$buildDir/asciidoc/html5"
+  from "$projectDir/src/static"
+  into ghPagesFolder
+  dependsOn asciidoctor
+  shouldRunAfter clean, asciidoctor, build
 }
 
 clean.doFirst {
-  delete "$projectDir.parent/docs"
+  delete ghPagesFolder
 }
 
+build.dependsOn asciidoctor
 asciidoctor.shouldRunAfter clean
-build.dependsOn asciidoctor, gitPublishCopy
-gitPublishCopy.shouldRunAfter clean, asciidoctor
 
 task wrapper(type: Wrapper) {
   gradleVersion = "4.3.1"

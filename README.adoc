@@ -2,7 +2,7 @@
 
 //tag::content[]
 
-This repository contains ratpack examples
+This repository contains my ratpack examples
 
 . link:spring-boot-ratpack[ratpack: spring-boot]
 . link:event-sourced-pizza[pizza: event-sourcing]

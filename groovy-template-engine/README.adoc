@@ -1,0 +1,25 @@
+= ratpack-examples image:https://travis-ci.org/daggerok/ratpack-examples.svg?branch=master["Build Status", link=https://travis-ci.org/daggerok/ratpack-examples]
+
+//tag::content[]
+
+This is an oldest version of spring-boot 1.3.5.RELEASE and gradle 2.6
+
+. run ratpack
+. with spring-boot old spring-boot (1.3.5.RELEASE) together
+. using groovy template engine (see index.html, index.gtpl)
+. within old version of gradle build system (2.6), so use wrapper!
+
+.run and test
+----
+bash gradlew bootRun
+http :8080
+http :5050
+----
+
+. link:spring-boot-ratpack[ratpack: spring-boot]
+. link:event-sourced-pizza[pizza: event-sourcing]
+. link:groovy-ioc-static-rest-spa-fullstack[full-stack ratpack]
+
+link:https://ratpack.io/manual/current/index.html[documentation]
+
+//end::content[]

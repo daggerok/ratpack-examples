@@ -1,0 +1,15 @@
+springbootratpack [![build](https://travis-ci.org/daggerok/springbootratpack.svg?branch=master)](https://travis-ci.org/daggerok/springbootratpack)
+=================
+
+```sh
+gradle bootRun
+open http://localhost:8080
+open http://localhost:5050
+```
+
+links
+- [spring.io](https://spring.io)
+- [ratpack.io](https://ratpack.io)
+- [ratpack+spring](https://ratpack.io/manual/current/spring.html#the_spring_convenience_class)
+- [embedded mongo](https://github.com/flapdoodle-oss/de.flapdoodle.embed.mongo)
+- [spring-boot groovy template enginer](https://spring.io/blog/2014/05/28/using-the-innovative-groovy-template-engine-in-spring-boot)

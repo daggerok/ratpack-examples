@@ -1,0 +1,49 @@
+buildscript {
+  ext {
+//    ratpackVersion = "1.5.0"
+    ratpackVersion = "1.1.1"
+  }
+  repositories {
+    jcenter()
+  }
+  dependencies {
+    classpath "io.ratpack:ratpack-gradle:$ratpackVersion"
+  }
+}
+
+plugins {
+  id "idea"
+  id "java"
+  id "org.springframework.boot" version "1.5.8.RELEASE"
+}
+
+apply plugin: "io.ratpack.ratpack-java"
+// requires for groovyMarkupTemplate
+apply plugin: "io.ratpack.ratpack-groovy"
+
+sourceCompatibility = targetCompatibility = 1.8
+
+repositories { jcenter() }
+
+dependencies {
+  compile("io.ratpack:ratpack-spring-boot:1.1.1")
+  compile("org.webjars:bootstrap:3.3.6")
+  compile("org.springframework.boot:spring-boot-starter-groovy-templates")
+  compile("org.springframework.boot:spring-boot-starter-data-mongodb")
+  compile("org.springframework.data:spring-data-rest-webmvc")
+  compile("de.flapdoodle.embed:de.flapdoodle.embed.mongo")
+  compile("org.springframework.boot:spring-boot-devtools")
+  compile("org.projectlombok:lombok")
+  testCompile("org.springframework.boot:spring-boot-starter-test")
+}
+
+clean.doFirst {
+  ["out"].each {
+    delete "$projectDir/$it"
+  }
+}
+
+task wrapper(type: Wrapper) {
+  gradleVersion = "4.3.1"
+  distributionType = "ALL"
+}

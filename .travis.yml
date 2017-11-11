@@ -24,6 +24,7 @@ script:
   - export ROOT=$PWD
   - >
     for path in \
+      groovy-ioc-static-rest-spa-fullstack \
       spring-boot-ratpack \
       event-sourced-pizza
     do

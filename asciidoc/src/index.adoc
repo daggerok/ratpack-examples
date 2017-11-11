@@ -22,6 +22,9 @@ include::../../spring-boot-ratpack/README.adoc[tags=content]
 == event-sourcing using ratpack and spring-boot
 include::../../event-sourced-pizza/README.adoc[tags=content]
 
+== Full Stack Ratpack: groovy API | IoC | serving static content | REST with Jackson | SPA
+include::../../event-sourced-pizza/README.adoc[tags=content]
+
 == links
 
 . link:http://asciidoctor.org/docs/user-manual/#builtin-attributes[asciidoctor attributes]

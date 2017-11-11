@@ -538,15 +538,16 @@ table.CodeRay td.code>pre{padding:0}
 <span id="author" class="author">Maksim Kostromin</span><br>
 <span id="email" class="email"><a href="mailto:daggerok@gmail.com">daggerok@gmail.com</a></span><br>
 <span id="revnumber">version 0.0.1,</span>
-<span id="revdate">2017-11-11 18:51:00 EET</span>
+<span id="revdate">2017-11-11 21:47:03 EET</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#using-spring-boot-with-ratpack">1. using spring-boot with ratpack</a></li>
 <li><a href="#event-sourcing-using-ratpack-and-spring-boot">2. event-sourcing using ratpack and spring-boot</a></li>
-<li><a href="#links">3. links</a></li>
-<li><a href="#enjoy">4. Enjoy! :)</a></li>
+<li><a href="#full-stack-ratpack-groovy-api-ioc-serving-static-content-rest-with-jackson-spa">3. Full Stack Ratpack: groovy API | IoC | serving static content | REST with Jackson | SPA</a></li>
+<li><a href="#links">4. links</a></li>
+<li><a href="#enjoy">5. Enjoy! :)</a></li>
 </ul>
 </div>
 </div>
@@ -604,7 +605,39 @@ http post :5050/take-orders</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="links">3. links</h2>
+<h2 id="full-stack-ratpack-groovy-api-ioc-serving-static-content-rest-with-jackson-spa">3. Full Stack Ratpack: groovy API | IoC | serving static content | REST with Jackson | SPA</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>TODO: in progress&#8230;&#8203;</em></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>bash gradlew bootRun
+
+http :5050
+http post :5050/place-order variant=HAWAII size=BIG planet=Earth
+http :5050/count-standing-orders
+http :5050/get-planet-summary
+http post :5050/take-orders</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>links:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="https://www.youtube.com/watch?v=n_NXUk6POgY">event sourcing talk</a></p>
+</li>
+<li>
+<p><a href="https://ratpack.io/manual/current/jackson.html">ratpack</a></p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="links">4. links</h2>
 <div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
@@ -616,7 +649,7 @@ http post :5050/take-orders</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="enjoy">4. Enjoy! :)</h2>
+<h2 id="enjoy">5. Enjoy! :)</h2>
 <div class="sectionbody">
 
 </div>
@@ -625,7 +658,7 @@ http post :5050/take-orders</pre>
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1<br>
-Last updated 2017-11-11 18:51:00 EET
+Last updated 2017-11-11 21:47:03 EET
 </div>
 </div>
 </body>

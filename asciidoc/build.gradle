@@ -46,7 +46,7 @@ clean.doFirst {
   delete ghPagesFolder
 }
 
-build.dependsOn asciidoctor
+assemble.dependsOn asciidoctor
 asciidoctor.shouldRunAfter clean
 
 task wrapper(type: Wrapper) {

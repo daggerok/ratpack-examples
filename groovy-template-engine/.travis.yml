@@ -1,6 +1,0 @@
-language: java
-jdk: oracle8
-script: gradle clean build
-cache.directories:
-  - .gradle
-  - gradle

@@ -33,7 +33,7 @@ dependencies {
 }
 
 springBoot {
-  executable = true
+//  executable = true
 }
 
 clean.doFirst {

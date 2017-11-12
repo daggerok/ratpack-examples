@@ -2,5 +2,5 @@ spring:
   data.rest.base-path: /api
   groovy.template:
     cache: false
-    suffix: .tpl
+    suffix: .gtpl
   output.ansi.enabled: always

@@ -4,10 +4,7 @@ plugins {
   id "org.springframework.boot" version "1.5.8.RELEASE"
 }
 
-jar {
-  baseName = "retpack-spring-boot"
-  version = "0.0.1"
-}
+springBoot.executable = true
 
 sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
 

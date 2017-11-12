@@ -2,12 +2,6 @@ buildscript {
   ext {
     ratpackVersion = "1.5.0"
   }
-  repositories {
-    jcenter()
-  }
-  dependencies {
-    classpath "io.ratpack:ratpack-gradle:$ratpackVersion"
-  }
 }
 
 plugins {
@@ -16,26 +10,30 @@ plugins {
   id "org.springframework.boot" version "1.5.8.RELEASE"
 }
 
-apply plugin: "io.ratpack.ratpack-java"
-// requires for groovyMarkupTemplate
-apply plugin: "io.ratpack.ratpack-groovy"
-
-mainClassName = "daggerok.SpringBootRatpackApplication"
-
 sourceCompatibility = targetCompatibility = 1.8
 
 repositories { jcenter() }
 
 dependencies {
-  compile("io.ratpack:ratpack-spring-boot:$ratpackVersion")
+  ["spring-boot", "groovy"].each {
+    compile("io.ratpack:ratpack-$it:$ratpackVersion")
+  }
+
   compile("org.webjars:bootstrap:3.3.6")
   compile("org.springframework.boot:spring-boot-starter-groovy-templates")
   compile("org.springframework.boot:spring-boot-starter-data-mongodb")
   compile("org.springframework.data:spring-data-rest-webmvc")
   compile("de.flapdoodle.embed:de.flapdoodle.embed.mongo")
-  compile("org.springframework.boot:spring-boot-devtools")
-  compile("org.projectlombok:lombok")
+
+  runtime("org.springframework.boot:spring-boot-devtools")
+
+  compileOnly("org.projectlombok:lombok")
+
   testCompile("org.springframework.boot:spring-boot-starter-test")
+}
+
+springBoot {
+  executable = true
 }
 
 clean.doFirst {

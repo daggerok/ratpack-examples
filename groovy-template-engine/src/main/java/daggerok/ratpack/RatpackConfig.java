@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import ratpack.exec.Blocking;
+import ratpack.groovy.Groovy;
 import ratpack.groovy.template.MarkupTemplateModule;
 import ratpack.handling.Handler;
 import ratpack.spring.config.EnableRatpack;
@@ -14,26 +15,24 @@ import ratpack.spring.config.EnableRatpack;
 import java.util.HashMap;
 
 import static java.util.stream.Collectors.toList;
-import static ratpack.groovy.Groovy.groovyMarkupTemplate;
 
 @EnableRatpack
 @Configuration
 @ComponentScan(basePackageClasses = SpringBootRatpackApplication.class)
 public class RatpackConfig {
-/*
-  @Bean public Handler handler() {
-      return context -> context.render("Hello World");
-  }
-*/
-  @Bean // requires to make groovyMarkupTemplate works
-  MarkupTemplateModule markupTemplate() {
+  /*
+    @Bean public Handler handler() {
+        return context -> context.render("Hello World");
+    }
+  */
+  // requires to make groovyMarkupTemplate works
+  @Bean
+  MarkupTemplateModule markupTemplateModule() {
     return new MarkupTemplateModule();
   }
 
   @Bean
   Handler handler(final UserRepository userRepository) {
-    //return context -> context.render("index.html");
-    //val model = new HashMap<String, Object>();
     return context -> {
       Blocking.get(() -> {
         final HashMap<String, Object> model = new HashMap<String, Object>();
@@ -44,7 +43,7 @@ public class RatpackConfig {
                                          .collect(toList()));
         return model;
       }).then(model -> context.render(
-          groovyMarkupTemplate(model, "index.tpl", "text/html;charset=UTF-8")
+          Groovy.groovyMarkupTemplate(model, "index.gtpl", "text/html;charset=UTF-8")
       ));
     };
   }

@@ -20,11 +20,11 @@ import static java.util.stream.Collectors.toList;
 @Configuration
 @ComponentScan(basePackageClasses = SpringBootRatpackApplication.class)
 public class RatpackConfig {
-  /*
-    @Bean public Handler handler() {
-        return context -> context.render("Hello World");
-    }
-  */
+/*
+  @Bean public Handler handler() {
+      return context -> context.render("Hello World");
+  }
+*/
   // requires to make groovyMarkupTemplate works
   @Bean
   MarkupTemplateModule markupTemplateModule() {

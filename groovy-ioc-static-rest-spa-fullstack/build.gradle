@@ -24,7 +24,9 @@ dependencies {
   runtime "org.slf4j:slf4j-simple:1.7.25"
 }
 
-task wrapper(type: Wrapper) {
-  gradleVersion = "3.4.1"
+wrapper {
+  gradleVersion = "4.4.1"
   distributionType = "ALL"
 }
+
+defaultTasks "clean", "build"

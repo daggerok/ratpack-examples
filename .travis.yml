@@ -2,45 +2,53 @@ env:
   global:
     TERM=dumb
 
-group: edge
-dist: trusty
+group: travis_lts
 
 language: java
 jdk:
-  - openjdk8
-  - oraclejdk8
+- openjdk8
+- oraclejdk8
 
 install: true
 before_install:
 
-  - sudo apt update
-  - sudo apt install -y python-pip curl jq libxml2-utils
-  - sudo pip install httpie
+- sudo apt update -y || true
+- sudo apt install -y python-pip curl jq libxml2-utils
+- sudo pip install httpie
+- source <(curl -fsSL https://raw.github.com/daggerok/bash-functions/master/main.bash)
 
 script:
 
-  - bash gradlew clean docs
+- bash gradlew clean docs
 
-  - export ROOT=$PWD
-  - >
-    for path in \
-      groovy-template-engine \
-      run-spring-boot-and-ratpack-together-groovy-template-engine \
-      groovy-ioc-static-rest-spa-fullstack \
-      spring-boot-ratpack \
-      event-sourced-pizza
-    do
+- export root=${PWD}
 
-      cd "$ROOT/$path"
-      bash gradlew clean build
+- cd ${root}/fibonacci-api
+- bash mvnw
+- java -jar target/*-all.jar &
+- wait_for 8080
+- curl localhost:8080
+- curl localhost:8080/api/v1/fibonacci/13
+- curl localhost:8080/api/v1/fibonacci/20
+- stop_any 8080
 
-    done;
+- >
+  for path in \
+    groovy-template-engine \
+    run-spring-boot-and-ratpack-together-groovy-template-engine \
+    groovy-ioc-static-rest-spa-fullstack \
+    spring-boot-ratpack \
+    event-sourced-pizza
+  do
+
+    cd "${root}/{$path}"
+    bash gradlew clean build
+
+  done;
 
 cache:
   directories:
-    - /usr/local/lib/
-    - $HOME/.gradle/
-    - $HOME/.cache/
-    - $HOME/.nvm/
-    - $HOME/.m2/
-    - 01-spring-boot-ratpack/.gradle/
+  - $HOME/.gradle/
+  - $HOME/.cache/
+  - $HOME/.nvm/
+  - $HOME/.m2/

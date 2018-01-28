@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>daggerok</groupId>
+  <version>0.0.1</version>
+  <artifactId>some-ratpack</artifactId>
+  <packaging>jar</packaging>
+
+  <properties>
+    <ratpack.version>1.5.1</ratpack.version>
+    <lombok.version>1.16.18</lombok.version>
+    <slf4j.version>1.7.25</slf4j.version>
+    <java.version>1.8</java.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>io.ratpack</groupId>
+      <artifactId>ratpack-core</artifactId>
+      <version>${ratpack.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.ratpack</groupId>
+      <artifactId>ratpack-rx</artifactId>
+      <version>${ratpack.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.ratpack</groupId>
+      <artifactId>ratpack-jackson</artifactId>
+      <version>0.9.7</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>${lombok.version}</version>
+      <optional>true</optional>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>${slf4j.version}</version>
+    </dependency>
+<!--
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-jdk14</artifactId>
+      <version>${slf4j.version}</version>
+    </dependency>
+-->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>jul-to-slf4j</artifactId>
+      <version>${slf4j.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>log4j-over-slf4j</artifactId>
+      <version>${slf4j.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>1.2.3</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <defaultGoal>clean package</defaultGoal>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.7.0</version>
+        <configuration>
+          <source>${java.version}</source>
+          <target>${java.version}</target>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>3.1.0</version>
+
+        <configuration>
+          <finalName>${project.artifactId}-${project.version}-all</finalName>
+
+          <appendAssemblyId>false</appendAssemblyId>
+
+          <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
+
+          <archive>
+            <manifest>
+              <mainClass>daggerok.App</mainClass>
+            </manifest>
+          </archive>
+        </configuration>
+
+        <executions>
+          <execution>
+            <id>assemble-jar-with-dependencies</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>com.dkanejs.maven.plugins</groupId>
+        <artifactId>docker-compose-maven-plugin</artifactId>
+        <version>1.0.1</version>
+        <executions>
+          <execution>
+            <id>up</id>
+            <!--<phase>process-resources</phase>-->
+            <phase>verify</phase>
+            <goals>
+              <goal>up</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>down</id>
+            <!--<phase>test</phase>-->
+            <phase>verify</phase>
+            <goals>
+              <goal>down</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <composeFile>${project.basedir}/docker-compose-maven.yaml</composeFile>
+          <detachedMode>true</detachedMode>
+          <removeVolumes>true</removeVolumes>
+          <detail>true</detail>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>

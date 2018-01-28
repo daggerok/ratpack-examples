@@ -37,22 +37,29 @@ public class App {
                                                        .map(f -> f.getBody().getText())
                                                        .map(Long::valueOf);
     RatpackServer.start(
-        server -> server.serverConfig(
+        server -> server.registryOf(
+
+            registry -> registry.add("World!")
+
+        ).serverConfig(
             builder -> builder
                 .port(port)
                 .address(InetAddress.getByName(host))
                 .development(false)
                 .threads(1)
+                // this is required if you using src/ratpack
                 .baseDir(BaseDir.find())
                 .build()
         ).handlers(chain -> chain
-            // fibonacci
             .prefix("api/v1/fibonacci", fib -> fib
                 .get(":number", ctx -> {
+
                   final String string = ctx.getPathTokens().get("number");
                   final Long number = Long.valueOf(string);
+
                   if (number <= 0) ctx.render(Jackson.json(0));
                   else if (number <= 2) ctx.render(Jackson.json(1));
+
                   else {
 
                     final Promise<Long> fib_1 = fibo.apply(number - 1);
@@ -62,19 +69,23 @@ public class App {
 
                     Observable.zip(fibo1, fibo2, (f1, f2) -> f1 + f2)
                               .subscribe(result -> ctx.render(Jackson.json(result)));
+
                   }
                 }))
-            .files(f -> f.dir("public").indexFiles("index.html"))
-            // ratpack fallback
-            .get("api", ctx -> {
+            // '/static/favicon.ico' -> src/ratpack/static/favicon.ico folder
+            .prefix("static", nested -> nested.fileSystem("static", Chain::files))
+            // ratpack fallback route
+            .all(ctx -> {
+
               final String url = uri.apply(15L).toASCIIString();
               final String message = "Hey! Do you heard about recursive REST Fibonacci? checkout";
               final Map<String, String> body = singletonMap(message, url);
+
               ctx.getResponse()
                  .contentType(APPLICATION_JSON);
               ctx.render(Jackson.json(body));
+
             })
-            .all(ctx -> ctx.redirect("/"))
         )
     ).start();
 

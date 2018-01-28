@@ -23,13 +23,26 @@ script:
 
 - export root=${PWD}
 
+- cd ${root}/fibonacci-gradle
+- bash gradlew
+- java -jar target/*-all.jar &
+- wait_for 8080
+- curl localhost:8080
+- curl localhost:8080/api/v1/fibonacci/15
+- curl localhost:8080/api/v1/fibonacci/19
+- http :8080/static/favicon.ico
+- sleep 1
+- stop_any 8080
+
 - cd ${root}/fibonacci-api
 - bash mvnw
 - java -jar target/*-all.jar &
 - wait_for 8080
-- curl localhost:8080
+- http :8080
+- http :8080/favicon.ico
+- curl localhost:8080/api
 - curl localhost:8080/api/v1/fibonacci/13
-- curl localhost:8080/api/v1/fibonacci/20
+- curl localhost:8080/api/v1/fibonacci/19
 - stop_any 8080
 
 - >

@@ -1,0 +1,89 @@
+buildscript {
+  ext {
+    lombokVersion = "1.16.18"
+    slf4jVersion = "1.7.10"
+    javaVersion = "1.8"
+  }
+}
+
+plugins {
+  id "idea"
+  id "maven"
+  id "eclipse"
+  id "io.ratpack.ratpack-java" version "1.5.1"
+  id "com.github.johnrengelman.shadow" version "2.0.2"
+  id "com.avast.gradle.docker-compose" version "0.6.12"
+}
+
+if (!JavaVersion.current().java8Compatible) {
+  throw new IllegalStateException("Must be built with Java 8 or higher")
+}
+
+//// The “ratpack” plugin applies the “application” plugin, making it easy to create a standalone application.
+//// See: http://gradle.org/docs/current/userguide/application_plugin.html
+//apply plugin: "io.ratpack.ratpack-java"
+//apply plugin: "com.github.johnrengelman.shadow"
+
+// The “ratpack” plugin is IDEA aware.
+// It will create a run configuration in IDEA to launch your app in your IDE, with hot reloading.
+mainClassName = "daggerok.App"
+group "daggerok"
+version "0.0.1"
+sourceCompatibility = targetCompatibility = javaVersion
+
+defaultTasks "clean", "build"
+
+repositories {
+  jcenter()
+}
+
+dependencies {
+
+  // compile ratpack.dependency("guice")
+  //runtime "org.slf4j:slf4j-simple:1.7.10"
+  compile ratpack.dependency("rx")
+  testCompile ratpack.dependency("test")
+
+  compile "org.slf4j:slf4j-api:$slf4jVersion"
+  // compile "org.slf4j:slf4j-jdk14:$slf4jVersion"
+  compile "org.slf4j:jul-to-slf4j:$slf4jVersion"
+  compile "org.slf4j:log4j-over-slf4j:$slf4jVersion"
+  compile "ch.qos.logback:logback-classic:1.2.3"
+  compileOnly "org.projectlombok:lombok:$lombokVersion"
+
+  testCompile "junit:junit:4.11"
+  testCompileOnly "org.projectlombok:lombok:$lombokVersion"
+}
+
+dockerCompose {
+  useComposeFiles = [project.file("docker-compose.yaml")]
+  captureContainersOutput = true
+  stopContainers = true
+  removeContainers = true
+  removeImages = "Local"
+  removeVolumes = true
+  removeOrphans = true
+  projectName = project.name
+}
+
+composeUp.dependsOn assemble
+
+idea {
+  project {
+    //use JDK 1.8 in idea
+    jdkName "1.8"
+    languageLevel "1.8"
+    ipr {
+      withXml { provider ->
+        def node = provider.asNode()
+        //configure git support for the project in idea
+        node.component.find { it."@name" == "VcsDirectoryMappings" }?.mapping[0]."@vcs" = "Git"
+      }
+    }
+  }
+}
+
+task wrapper(type: Wrapper) {
+  gradleVersion = "4.5"
+  distributionType = "ALL"
+}

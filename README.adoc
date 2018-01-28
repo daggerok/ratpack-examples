@@ -12,6 +12,9 @@ This repository contains my ratpack examples
 . link:kotlin-ratpack-spring-boot-mongo-hateoas[running spring-boot and ratpack together]
 . link:fibonacci-gradle[ratpack fibonacci recursive REST API]
 
-link:https://ratpack.io/manual/current/index.html[documentation]
+links:
+
+. link:https://ratpack.io/manual/current/index.html[documentation]
+. link:https://www.youtube.com/watch?v=a2wxCClOju4[Rapid Java Web Development with Ratpack (Daniel Hyul)]
 
 //end::content[]

@@ -12,4 +12,9 @@ http :5050
 http :5050/my-message
 ----
 
+links:
+
+. link:https://www.youtube.com/watch?v=hPe820taH7k[Webinar: Spring Boot and Ratpack Web Framework]
+. link:https://github.com/danhyun/spring-ratpack-2016[Github: danhyun/spring-ratpack-2016]
+
 //end::content[]

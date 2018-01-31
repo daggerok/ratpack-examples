@@ -1,0 +1,15 @@
+= ratpack centric image:https://travis-ci.org/daggerok/ratpack-examples.svg?branch=master["Build Status", link=https://travis-ci.org/daggerok/ratpack-examples]
+
+//tag::content[]
+
+This is a ratpack-centic application (Ratpack server registry uses Spring config)
+
+.test
+----
+bash gradlew build
+java -jar build/libs/*-all.jar
+http :5050
+http :5050/my-message
+----
+
+//end::content[]

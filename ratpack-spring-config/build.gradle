@@ -1,0 +1,38 @@
+buildscript {
+  ext {
+    ratpackVersion = "1.5.1"
+  }
+}
+
+plugins {
+  id "eclipse"
+  id "application"
+  id "io.ratpack.ratpack-java" version "1.5.1"
+  id "com.github.johnrengelman.shadow" version "2.0.2"
+}
+
+mainClassName = "daggerok.RatpackApplication"
+
+allprojects {
+
+  apply plugin: "java"
+  apply plugin: "maven"
+
+  group = "daggerok"
+  version = "0.0.1"
+  sourceCompatibility = targetCompatibility = 1.8
+}
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  compileOnly("org.projectlombok:lombok:1.16.20")
+  compile project(":spring-config").sourceSets.main.output
+  compile ratpack.dependency("spring-boot")
+  compile("io.ratpack:ratpack-jackson:0.9.17")
+  testCompileOnly("org.projectlombok:lombok:1.16.20")
+}
+
+println project(":spring-config").sourceSets.main.output

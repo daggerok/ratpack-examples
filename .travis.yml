@@ -23,6 +23,16 @@ script:
 
 - export root=${PWD}
 
+- cd ${root}/ratpack-spring-config
+- bash gradlew build
+- java -jar build/libs/*-all.jar &
+- wait_for 5050
+- http :5050
+- http :5050/ololo
+- http :5050/trololo
+- http :5050/my-message-to-you!
+- stop_any 5050
+
 - cd ${root}/fibonacci-gradle
 - bash gradlew
 - java -jar build/libs/*-all.jar &

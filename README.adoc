@@ -11,6 +11,7 @@ This repository contains my ratpack examples
 . link:groovy-template-engine[using groovy template engine with spring-boot and ratpack]
 . link:kotlin-ratpack-spring-boot-mongo-hateoas[running spring-boot and ratpack together]
 . link:fibonacci-gradle[ratpack fibonacci recursive REST API]
+. link:ratpack-spring-config[ratpack-centric application uses spring config (registry)]
 
 links:
 

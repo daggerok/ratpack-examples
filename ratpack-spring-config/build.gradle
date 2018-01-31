@@ -32,7 +32,26 @@ dependencies {
   compile project(":spring-config").sourceSets.main.output
   compile ratpack.dependency("spring-boot")
   compile("io.ratpack:ratpack-jackson:0.9.17")
-  testCompileOnly("org.projectlombok:lombok:1.16.20")
 }
 
 println project(":spring-config").sourceSets.main.output
+
+task wrapper(type: Wrapper) {
+//  gradleVersion = "4.0.1"
+
+////build using gradle version > 3.5.1 is failing on bootstrap
+////Exception in thread "main" java.lang.NoSuchFieldError: TYPE
+////at ratpack.server.internal.ServerRegistry.buildBaseRegistry(ServerRegistry.java:113)
+////at ratpack.server.internal.ServerRegistry.serverRegistry(ServerRegistry.java:63)
+////at ratpack.server.internal.DefaultRatpackServer.buildServerRegistry(DefaultRatpackServer.java:294)
+////at ratpack.server.internal.DefaultRatpackServer.buildAdapter(DefaultRatpackServer.java:283)
+////at ratpack.server.internal.DefaultRatpackServer.buildHandler(DefaultRatpackServer.java:213)
+////at ratpack.server.internal.DefaultRatpackServer.lambda$start$0(DefaultRatpackServer.java:124)
+////at ratpack.exec.internal.ThreadBinding.bindFor(ThreadBinding.java:51)
+////at ratpack.server.internal.DefaultRatpackServer.start(DefaultRatpackServer.java:124)
+////at ratpack.server.RatpackServer.start(RatpackServer.java:90)
+////at daggerok.RatpackApplication.main(RatpackApplication.java:12)
+
+  gradleVersion = "3.5.1"
+  distributionType = "ALL"
+}

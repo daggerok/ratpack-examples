@@ -4,6 +4,7 @@
 
 This repository contains my ratpack examples
 
+. link:https://github.com/daggerok/java-se-cdi-ratpack[Java SE Weld CDI ratpack example]
 . link:spring-boot-ratpack[ratpack: spring-boot]
 . link:event-sourced-pizza[pizza: event-sourcing]
 . link:groovy-ioc-static-rest-spa-fullstack[full-stack ratpack]
